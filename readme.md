@@ -16,6 +16,16 @@ cd Scripts
 activate
 pip -r install requirements.txt
 
-## Running
+## model
+
+[efficientdet] (https://www.kaggle.com/models/tensorflow/efficientdet/frameworks/tensorFlow2)
+
+download and store in models folder
+
+## Running Image Detection
 
 python image_detection.py
+
+## Running Liver Detection
+
+python livestream_detection.py

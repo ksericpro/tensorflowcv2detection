@@ -39,6 +39,11 @@ if __name__ == '__main__':
 
     #Load image by Opencv2
     print("Step 1> Reading image file ..{}".format(image))
+
+    if not(os.path.exists(image)):
+        print("{} does not exist".format(image))
+        os.exit(0)
+
     img = cv2.imread(image)
     h, w, c = img.shape
     print('width:  ', w)
@@ -121,6 +126,7 @@ if __name__ == '__main__':
         cv2.putText(img_boxes, label + "("+score_txt+")", (_xmin, _ymax-10), font, 0.8, (255,255,0), 2, cv2.LINE_AA)
         #cv2.putText(img_boxes, score_txt, (_xmax, _ymax-10), font, 1.0, (255,0,0), 2, cv2.LINE_AA)
 
+    plt.figure(figsize=(10,10))
     plt.imshow(img_boxes)
     plt.show()
 
