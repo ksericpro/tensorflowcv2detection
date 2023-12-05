@@ -10,6 +10,7 @@ import matplotlib.image as mpimg
 import signal
 import sys
 from config import local as _config 
+import argparse, os
 
 # constants
 width = _config.width
@@ -24,14 +25,21 @@ def service_shutdown(signum, frame):
     sys.exit(0)
 
 if __name__ == '__main__':
+    # Get Arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-i", "--image", default=_config.image)
+
+    args = parser.parse_args()
+    image = args.image
+    print("image={}".format(image))
+
     # Register the signal handlers
     signal.signal(signal.SIGTERM, service_shutdown)
     signal.signal(signal.SIGINT, service_shutdown)
 
     #Load image by Opencv2
-    filename = "image_2.png"
-    print("Step 1> Reading image file ..{}".format(filename))
-    img = cv2.imread(filename)
+    print("Step 1> Reading image file ..{}".format(image))
+    img = cv2.imread(image)
     h, w, c = img.shape
     print('width:  ', w)
     print('height: ', h)
@@ -66,7 +74,6 @@ if __name__ == '__main__':
 
     print("detector_output: {}".format(detector_output))
     print("detected class: {}".format(class_ids))
-
 
     # Creating prediction
     #boxes, scores, classes, num_detections = detector(rgb_tensor)
@@ -113,7 +120,6 @@ if __name__ == '__main__':
         img_boxes = cv2.rectangle(rgb,(_xmin, _ymax),(_xmax, _ymin), (0,255,0),2) 
         cv2.putText(img_boxes, label + "("+score_txt+")", (_xmin, _ymax-10), font, 0.8, (255,255,0), 2, cv2.LINE_AA)
         #cv2.putText(img_boxes, score_txt, (_xmax, _ymax-10), font, 1.0, (255,0,0), 2, cv2.LINE_AA)
-
 
     plt.imshow(img_boxes)
     plt.show()
