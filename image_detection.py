@@ -1,5 +1,3 @@
-# https://www.kaggle.com/models/tensorflow/efficientdet/frameworks/tensorFlow2
-
 import tensorflow_hub as hub
 import cv2
 import numpy
