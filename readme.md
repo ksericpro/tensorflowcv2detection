@@ -10,11 +10,11 @@ taskkill /im /f python.exe
 
 ## setup
 
-python -m venv .env/tensorflowdetaction
-cd .env/mongofle
-cd Scripts 
-activate
-pip -r install requirements.txt
+ - python -m venv .env/tensorflowdetaction
+ - cd .env/mongofle
+ - cd Scripts 
+ - activate
+ - pip -r install requirements.txt
 
 ## model
 
